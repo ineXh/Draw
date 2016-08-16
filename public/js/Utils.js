@@ -60,9 +60,13 @@ function onTouchStart(event){
   if(spritetouched) return;
 
   event.preventDefault();
+  MousePos.touched = true;
 	getMouse(event, event.changedTouches[0]);
-  console.log('spawnSquare')
+  //console.log('touch start - x: ' + MousePos.x + ' y: ' + MousePos.y);
   //spawnSquare();
+  points.length = 0;
+  points.push(MousePos.x)
+  points.push(MousePos.y)
 
 } // end onTouchStart
 function onMultiTouchStart(event){
@@ -72,13 +76,18 @@ function onMultiTouchStart(event){
 function onTouchMove(event){
     event.preventDefault();
     if(!MousePos.touched) return;
-    //console.log('onTouchMove ' + MousePos.touched)
+    console.log('onTouchMove ' + MousePos.touched)
 
     //console.log(event.changedTouches)
 	getMouse(event, event.changedTouches[0]);
-    //stage.x -= MousePos.px - MousePos.x;
-    //stage.y -= MousePos.py - MousePos.y;
-    onMultiTouchMove(event);
+  onMultiTouchMove(event);
+
+  if(time.t%2 ==0 ){
+    points.push(MousePos.x)
+    points.push(MousePos.y)
+    //console.log(points)
+  }
+
 
 } // end onTouchMove
 function onMultiTouchMove(event){
@@ -97,6 +106,9 @@ function onTouchEnd(event){
 	//getMouse(event);
 	getMouse(event, event.changedTouches[0]);
 	MousePos.touched = false;
+
+  points.push(MousePos.x)
+  points.push(MousePos.y)
 
 	//path.addPoint(MousePos.x, MousePos.y);
 	//path.drawPath();
