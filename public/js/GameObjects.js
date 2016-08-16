@@ -46,17 +46,27 @@ GameObjects.prototype = {
 
 	},
 	update: function(time){
-        graphic.clear();
-        //graphic.beginFill(0xff0000,1);
-        graphic.lineStyle(dim/400, 0x00, 1);
-        //graphic.drawPolygon(points);
-        for(var i = 0; i < points.length-3; i=i+2){
-            graphic.moveTo(points[i], points[i+1]);
-            graphic.lineTo(points[i+2], points[i+3]);
+        if(MousePos.touched){
+            drawLine();
         }
-        //graphic.endFill();
 	},
 }; // end GameObjects
+
+var drawLine = function(){
+    graphic.clear();
+    graphic.lineStyle(dim/400, 0x00, 1);
+    for(var i = 0; i < points.length-3; i=i+2){
+        graphic.moveTo(points[i], points[i+1]);
+        graphic.lineTo(points[i+2], points[i+3]);
+    }
+}
+var drawPolygon = function(){
+    //console.log('drawPolygon')
+    graphic.clear();
+    graphic.beginFill(0xff0000,1);
+    graphic.drawPolygon(points);
+    graphic.endFill();
+}
 
 var spawnSquare = function(){
     //console.log('spawn')

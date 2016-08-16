@@ -76,17 +76,17 @@ function onMultiTouchStart(event){
 function onTouchMove(event){
     event.preventDefault();
     if(!MousePos.touched) return;
-    console.log('onTouchMove ' + MousePos.touched)
+    //console.log('onTouchMove ' + MousePos.touched)
 
     //console.log(event.changedTouches)
 	getMouse(event, event.changedTouches[0]);
   onMultiTouchMove(event);
 
-  if(time.t%2 ==0 ){
+  //if(time.t%2 ==0 ){
     points.push(MousePos.x)
     points.push(MousePos.y)
     //console.log(points)
-  }
+  //}
 
 
 } // end onTouchMove
@@ -107,8 +107,9 @@ function onTouchEnd(event){
 	getMouse(event, event.changedTouches[0]);
 	MousePos.touched = false;
 
-  points.push(MousePos.x)
-  points.push(MousePos.y)
+  points.push(MousePos.x);
+  points.push(MousePos.y);
+  drawPolygon();
 
 	//path.addPoint(MousePos.x, MousePos.y);
 	//path.drawPath();
